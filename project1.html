@@ -24,22 +24,27 @@
     </style>
 </head>
 <body>
-    <h1>Project 1</h1>
+    <h1>Project 1 - Colorizing the Prokudin-Gorskii photo collection</h1>
     
-    <h2>Introduction</h2>
-    <p>This is the first project for CS180. In this project, we focused on [brief description of the project].</p>
+    <h2>LOW RES IMAGES - Naive search</h2>
+    <p>For the low resolution images, the algorithm used is a simple naive search over the x and y axis. 
+        It moves the red and green channels over a range of 10 pixels ([-10, 10]) on both axes and tries to find the optimal allignment by using the L2 norm
+        It then translates the images and stacks the channels to create the final image. The tree examples are shown below.</p>
     
+    <img src="./images/lowres1.jpg" alt="lowres1">
+    <img src="./images/lowres2.jpg" alt="lowres2">
+    <img src="./images/lowres3.jpg" alt="lowres3">
     <h2>Project Details</h2>
     <p>Here you can provide more information about your project, its goals, and the technologies used.</p>
     
     <h2>Project Image</h2>
     <img src="./images/emir.jpg" alt="Emir">
-    <img src="./images/church.jpg" alt="Emir">
-    <img src="./images/lady.jpg" alt="Emir">
-    <img src="./images/hires1.jpg" alt="Emir">
-    <img src="./images/hires2.jpg" alt="Emir">
-    <img src="./images/onion_church.jpg" alt="Emir">
-    <img src="./images/train.jpg" alt="Emir">
+    <img src="./images/church.jpg" alt="Church">
+    <img src="./images/lady.jpg" alt="lady">
+    <img src="./images/hires1.jpg" alt="hires1">
+    <img src="./images/hires2.jpg" alt="hires2">
+    <img src="./images/onion_church.jpg" alt="ochurch">
+    <img src="./images/train.jpg" alt="train">
 
     
     <h2>Conclusion</h2>
