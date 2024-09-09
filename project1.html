@@ -28,24 +28,29 @@
     
     <h2>LOW RES IMAGES - Naive search</h2>
     <p>For the low resolution images, the algorithm used is a simple naive search over the x and y axis. 
-        It moves the red and green channels over a range of 10 pixels ([-10, 10]) on both axes and tries to find the optimal allignment by using the L2 norm
-        It then translates the images and stacks the channels to create the final image. The tree examples are shown below.</p>
+        It moves the red and green channels over a range of 10 pixels ([-10, 10]) on both axes and tries to find the optimal allignment by using the L2 norm. 
+        Before the algorithm is run, I have cropped the borders by a constant value to avoid them interfering with the pixels within the image. Then, a sobel filter is applied 
+        in order to highlight edges and make a stronger image comparison with the L2 norm.
+        It then translates the images and stacks the channels to create the final image. The three examples are shown below.</p>
     
     <img src="./images/lowres1.jpg" alt="lowres1">
     <img src="./images/lowres2.jpg" alt="lowres2">
     <img src="./images/lowres3.jpg" alt="lowres3">
 
     <h2>HIGH RES IMAGES - Image Pyramid method</h2>
-    <p></p>
+    <p>For the high resolution images, a pyramid method has been used, where images in each of the channels are scaled to 0.5x their size and stored in their
+        respective arrays. Then the same process of cropping borders(greater constant value due to larger size of image) and applying the sobel filter is done.
+        For the search itself, the algorithm starts with the smallest image first and searches over (-10, 11) in both directions to find optimal fit. The image and best translation
+        values are then doubled and the process repeats until the nomral size image is used and the final translation values are found. The 3 channels are then stacked to give the final image. Some examples are shown below
+    </p>
     
-    <h2>Project Image</h2>
-    <img src="./images/emir.jpg" alt="Emir", style="height: 100; width: 100;">
-    <img src="./images/church.jpg" alt="Church">
-    <img src="./images/lady.jpg" alt="lady">
-    <img src="./images/hires1.jpg" alt="hires1">
-    <img src="./images/hires2.jpg" alt="hires2">
-    <img src="./images/onion_church.jpg" alt="ochurch">
-    <img src="./images/train.jpg" alt="train">
+    <img src="./images/emir.jpg" alt="Emir"  width="350" height="auto">
+    <img src="./images/church.jpg" alt="Church" width="350" height="auto">
+    <img src="./images/lady.jpg" alt="lady" width="350" height="auto">
+    <img src="./images/hires1.jpg" alt="hires1" width="350" height="auto">
+    <img src="./images/hires2.jpg" alt="hires2" width="350" height="auto">
+    <img src="./images/onion_church.jpg" alt="ochurch" width="350" height="auto">
+    <img src="./images/train.jpg" alt="train" width="350" height="auto">
 
     
     <h2>Conclusion</h2>
