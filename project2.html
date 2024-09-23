@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - CS180 Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 2 - Fun with Filters and Frequencies</h1>
+    
+    <h2>Finite Difference Operator and Gradient Magnitude</h2>
+    <p></p>
+    
+    <img src="./images/lowres1.jpg" alt="lowres1">
+    <img src="./images/lowres2.jpg" alt="lowres2">
+    <img src="./images/lowres3.jpg" alt="lowres3">
 
+    <h2>HIGH RES IMAGES - Image Pyramid method</h2>
+    <p>For the high resolution images, a pyramid method has been used, where images in each of the channels are scaled to 0.5x their size and stored in their
+        respective arrays. Then the same process of cropping borders(greater constant value due to larger size of image) and applying the sobel filter is done.
+        For the search itself, the algorithm starts with the smallest image first and searches over (-10, 11) in both directions to find optimal fit. The image and best translation
+        values are then doubled and the process repeats until the nomral size image is used and the final translation values are found. The 3 channels are then stacked to give the final image. Some examples are shown below
+    </p>
+    
+    <img src="./images/emir.jpg" alt="Emir"  width="350" height="auto">
+    <img src="./images/church.jpg" alt="Church" width="350" height="auto">
+    <img src="./images/lady.jpg" alt="lady" width="350" height="auto">
+    <img src="./images/hires1.jpg" alt="hires1" width="350" height="auto">
+    <img src="./images/hires2.jpg" alt="hires2" width="350" height="auto">
+    <img src="./images/onion_church.jpg" alt="ochurch" width="350" height="auto">
+    <img src="./images/train.jpg" alt="train" width="350" height="auto">
+
+    
+    <h2>Conclusion</h2>
+    <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+    
+    <a href="index.html">Back to Main Page</a>
+</body>
+</html>
