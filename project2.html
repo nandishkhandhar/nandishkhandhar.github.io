@@ -26,14 +26,14 @@
 <body>
     <h1>Project 2 - Fun with Filters and Frequencies</h1>
     
-    <h2>Finite Difference Operator and Gradient Magnitude</h2>
+    <h2>1.1 - Finite Difference Operator and Gradient Magnitude</h2>
     <p>The original image was first convolved with the finite difference operators to produce Ix and Iy. The gradient 
         magnitude was then computed by taking the norm (np.sqrt(Ix**2 + Iy**2)) of the [Ix Iy] vector. Shown below are the images
     of all steps, including creating the binary edge image by enforcing a threshold.</p>
     
     <img src="./images/first.png" alt="lowres3">
 
-    <h2>Gaussian Filters</h2>
+    <h2>1.2 - Gaussian Filters</h2>
     <p>In this version, the only difference is that the image was convolved with a gaussian blurring filter beforehand. This means that
     the transitions between edges are smoothed, making the gradient magnitude more apparent. The visual differences seen in the result
     are better highlighted/thicker edges. Images are shown below</p>
@@ -45,13 +45,18 @@
     <img src="./images/thrid.png" alt="lowres3">
 
 
-    <h2>Image Sharpening</h2>
+    <h2>2.1 - Image Sharpening</h2>
     <p>The image sharpening process starts with extracting the high frequencies from the image. This is done through applying a gaussian blur 
     filter and then subtracting the blurred image (low frequencies) from the original to get the high frequencies. Then, I have added the high 
     frequencies to the original image, where the high frequencies are weighted by different alphas.</p>
     
     <img src="./images/taj_sharpened_stack.png" alt="lowres3">
     <img src="./images/nandish_jash_sharpened_stack.png" alt="lowres3">
+
+    <h2>2.1 - Image Sharpening</h2>
+    <p>The image sharpening process starts with extracting the high frequencies from the image. This is done through applying a gaussian blur 
+    filter and then subtracting the blurred image (low frequencies) from the original to get the high frequencies. Then, I have added the high 
+    frequencies to the original image, where the high frequencies are weighted by different alphas.</p>
 
     
     <h2>Conclusion</h2>
