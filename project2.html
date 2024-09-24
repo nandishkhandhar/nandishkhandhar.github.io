@@ -80,6 +80,20 @@
     <img src="./images/gaussian_orange.png" alt="lowres3">
     <img src="./images/laplacian_orange.png" alt="lowres3">
 
+    <h2>2.4 - Multiresolution Blending</h2>
+    <p>From the Gaussian and Laplacian stacks, we can create a mask that can be used to merge the two images. For the orapple, the mask is 
+just one side/half of the image, but I have created a circular mask for one of the examples. For process for blending, I created a Laplacian
+stack with the merged images and summed over the whole stack, including the last item so that all the low and high frequencies are added up
+to create the final image.</p>
+    
+    <img src="./images/merged_orapple_stack.png" alt="lowres3">
+    <img src="./images/blended.png" alt="lowres3">
+
+    <p>Some other examples are shown below. The New York skyline day and night merged image is made with the rectangular/vertical split mask, but the last example
+    shown is made with a circular mask restricted by a radius parameter.</p>
+    
+    <img src="./images/ny_blended_stack.png" alt="lowres3">
+    <img src="./images/kashvi_owl_stack.png" alt="lowres3">
     
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
