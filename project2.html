@@ -45,20 +45,13 @@
     <img src="./images/thrid.png" alt="lowres3">
 
 
-    <h2>HIGH RES IMAGES - Image Pyramid method</h2>
-    <p>For the high resolution images, a pyramid method has been used, where images in each of the channels are scaled to 0.5x their size and stored in their
-        respective arrays. Then the same process of cropping borders(greater constant value due to larger size of image) and applying the sobel filter is done.
-        For the search itself, the algorithm starts with the smallest image first and searches over (-10, 11) in both directions to find optimal fit. The image and best translation
-        values are then doubled and the process repeats until the nomral size image is used and the final translation values are found. The 3 channels are then stacked to give the final image. Some examples are shown below
-    </p>
+    <h2>Image Sharpening</h2>
+    <p>The image sharpening process starts with extracting the high frequencies from the image. This is done through applying a gaussian blur 
+    filter and then subtracting the blurred image (low frequencies) from the original to get the high frequencies. Then, I have added the high 
+    frequencies to the original image, where the high frequencies are weighted by different alphas.</p>
     
-    <img src="./images/emir.jpg" alt="Emir"  width="350" height="auto">
-    <img src="./images/church.jpg" alt="Church" width="350" height="auto">
-    <img src="./images/lady.jpg" alt="lady" width="350" height="auto">
-    <img src="./images/hires1.jpg" alt="hires1" width="350" height="auto">
-    <img src="./images/hires2.jpg" alt="hires2" width="350" height="auto">
-    <img src="./images/onion_church.jpg" alt="ochurch" width="350" height="auto">
-    <img src="./images/train.jpg" alt="train" width="350" height="auto">
+    <img src="./images/taj_sharpened_stack.png" alt="lowres3">
+    <img src="./images/nandish_jash_sharpened_stack.png" alt="lowres3">
 
     
     <h2>Conclusion</h2>
