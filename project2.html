@@ -53,12 +53,16 @@
     <img src="./images/taj_sharpened_stack.png" alt="lowres3">
     <img src="./images/nandish_jash_sharpened_stack.png" alt="lowres3">
 
-    <h2>2.1 - Image Sharpening</h2>
-    <p>The image sharpening process starts with extracting the high frequencies from the image. This is done through applying a gaussian blur 
-    filter and then subtracting the blurred image (low frequencies) from the original to get the high frequencies. Then, I have added the high 
-    frequencies to the original image, where the high frequencies are weighted by different alphas.</p>
-
+    <h2>2.2 - Hybrid Images</h2>
+    <p>As described in the project spec, the hybrid images were created by low-pass filtering one image and high-pass filtering the second image
+    and then combining the two. The two examples and one failed example are shown below. The hyperparameter values for the Gaussian filter were
+    set through experimentation and qualitative assesment.</p>
     
+    <img src="./images/cat_derek_stack.png" alt="lowres3">
+    <img src="./images/gorilla_blueberry_stack.png" alt="lowres3">
+    <img src="./images/nan_happy_sad.png" alt="lowres3">
+
+
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
     
