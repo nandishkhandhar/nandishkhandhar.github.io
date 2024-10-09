@@ -32,16 +32,16 @@
     Then, I have created a correspondence using the tool provided on the project spec. These points are then loaded in and the midway points are 
     calculated, on which the Delaunay triangulation function is applied. From the image shown below, you can see that I have tried to match feature to 
     feature, focusing on eyes, lips, chin and also the four ends of the image to give it a border.</p>
-
     
     <img src="./images/resized_image1.png" alt="lowres3" width="300" height="300">
     <img src="./images/resized_image2.png" alt="lowres3" width="300" height="300">
     <img src="./images/delaunay_jash_nandy.png" alt="lowres3">
 
-    <h2>1.2 - Gaussian Filters</h2>
-    <p>In this version, the only difference is that the image was convolved with a gaussian blurring filter beforehand. This means that
-    the transitions between edges are smoothed, making the gradient magnitude more apparent. The visual differences seen in the result
-    are better highlighted/thicker edges. Images are shown below</p>
+    <h2>Part 2: Mid-way Face</h2>
+    <p>This part defines the compute_affine and inversewarp functions, including others. Both the resized images are used, as well as the 
+    triangulations, to create the mid-way face. The affine function translates the images to the midway points found in the triangulation, 
+    and then an inverse warp is called on the same. Then, the images are cross dissolved to give the right colours. All the results are displayed below, including 
+    the warped images + the midway face. </p>
 
     <img src="./images/second.png" alt="lowres3">
 
