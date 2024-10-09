@@ -1,1 +1,106 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - CS180 Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 3 - Face Morphing</h1>
+    
+    <h2>Part 1: Defining Correspondences</h2>
+    <p>For the two images, I have chosen me and my friend Jash. These images are initially resized to 1/5 their dimensions to control the size.
+    Then, I have created a correspondence using the tool provided on the project spec. These points are then loaded in and the midway points are 
+    calculated, on which the Delaunay triangulation function is applied. From the image shown below, you can see that I have tried to match feature to 
+    feature, focusing on eyes, lips, chin and also the four ends of the image to give it a border.</p>
+    
+    <img src="./images/first.png" alt="lowres3">
+
+    <h2>1.2 - Gaussian Filters</h2>
+    <p>In this version, the only difference is that the image was convolved with a gaussian blurring filter beforehand. This means that
+    the transitions between edges are smoothed, making the gradient magnitude more apparent. The visual differences seen in the result
+    are better highlighted/thicker edges. Images are shown below</p>
+
+    <img src="./images/second.png" alt="lowres3">
+
+    <p>For this part, the program runs a single convolution, and the results are the same, as displayed below</p>
+    
+    <img src="./images/thrid.png" alt="lowres3">
+
+
+    <h2>2.1 - Image Sharpening</h2>
+    <p>The image sharpening process starts with extracting the high frequencies from the image. This is done through applying a gaussian blur 
+    filter and then subtracting the blurred image (low frequencies) from the original to get the high frequencies. Then, I have added the high 
+    frequencies to the original image, where the high frequencies are weighted by different alphas.</p>
+    
+    <img src="./images/taj_sharpened_stack.png" alt="lowres3">
+    <img src="./images/nandish_jash_sharpened_stack.png" alt="lowres3">
+
+    <h2>2.2 - Hybrid Images and Fourier Analysis</h2>
+    <p>As described in the project spec, the hybrid images were created by low-pass filtering one image and high-pass filtering the second image
+    and then combining the two. The two examples and one failed example are shown below. The hyperparameter values for the Gaussian filter were
+    set through experimentation and qualitative assesment.</p>
+    
+    <img src="./images/cat_derek_stack.png" alt="lowres3">
+    <img src="./images/gorilla_blueberry_stack.png" alt="lowres3">
+    <img src="./nan_happy_sad_stack.png" alt="lowres3">
+
+    <p>The Fourier output images are calculated as shown in the spec for the Cat and Derek image combination</p>
+
+    <img src="./images/fourier1.png" alt="lowres3">
+    <img src="./images/fourier2.png" alt="lowres3">
+    <img src="./images/fourier3.png" alt="lowres3">
+    <img src="./images/fourier4.png" alt="lowres3">
+    <img src="./images/fourier5.png" alt="lowres3">
+    
+    <h2>2.3 - Gaussian and Laplacian stacks</h2>
+    <p>The Gaussian stack is made by consistently applying the Gaussian blur on the original image. The Laplacian stack on the other hand,
+    is created by subtracting consecutive iamges in the Gaussian stack, highlighting/extracting all the high frequancies from the image. The stacks for the 
+    orange and apple are shown below.</p>
+    
+    <img src="./images/gaussian_apple.png" alt="lowres3">
+    <img src="./images/laplacian_apple.png" alt="lowres3">
+    <img src="./images/gaussian_orange.png" alt="lowres3">
+    <img src="./images/laplacian_orange.png" alt="lowres3">
+
+    <h2>2.4 - Multiresolution Blending</h2>
+    <p>From the Gaussian and Laplacian stacks, we can create a mask that can be used to merge the two images. For the orapple, the mask is 
+just one side/half of the image, but I have created a circular mask for one of the examples. For process for blending, I created a Laplacian
+stack with the merged images and summed over the whole stack, including the last item so that all the low and high frequencies are added up
+to create the final image.</p>
+    
+    <img src="./images/merged_orapple_stack.png" alt="lowres3">
+    <img src="./images/orapple_merged_stacks.png" alt="lowres3">
+
+    <p>Some other examples are shown below. The New York skyline day and night merged image is made with the rectangular/vertical split mask, but the last example
+    shown is made with a circular mask restricted by a radius parameter.</p>
+    
+    <img src="./images/ny_blended_stack.png" alt="lowres3">
+    <img src="./images/kashvi_owl_stack.png" alt="lowres3">
+    
+    <h2>Conclusion</h2>
+    <p> The most important thing that I learnt from this project is that image processing requires a lot of trial and error and deciding what looks best qualitatively.
+        I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+    
+    <a href="index.html">Back to Main Page</a>
+</body>
+</html>
