@@ -42,13 +42,14 @@
     triangulations, to create the mid-way face. The affine function translates the images to the midway points found in the triangulation, 
     and then an inverse warp is called on the same. Then, the images are cross dissolved to give the right colours. All the results are displayed below, including 
     the warped images + the midway face. </p>
+    
     <style>
       .image-container {
         text-align: center;
       }
       .image-container img {
         display: inline-block;
-        width: 30%; /* Adjust width as needed */
+        width: 30%; 
         margin: 10px;
       }
     </style>
@@ -58,20 +59,28 @@
         <img src="./images/warped2.png" alt="lowres3">
         <img src="./images/midway.png" alt="lowres3">
     </div>
-    
-
-    <p>For this part, the program runs a single convolution, and the results are the same, as displayed below</p>
-    
-    <img src="./images/thrid.png" alt="lowres3">
 
 
-    <h2>2.1 - Image Sharpening</h2>
-    <p>The image sharpening process starts with extracting the high frequencies from the image. This is done through applying a gaussian blur 
-    filter and then subtracting the blurred image (low frequencies) from the original to get the high frequencies. Then, I have added the high 
-    frequencies to the original image, where the high frequencies are weighted by different alphas.</p>
+    <h2>Part 3: The Morph Sequence</h2>
+    <p>To make the morph sequence, the code generates frames by varying warp_frac and dissolve_frac parameters from 0 to 1. The midway
+    face would have values of 0.5 for both parameters. Frames are generated and appended to the "frames" array with the same method as the midway
+    face. The gif produced contains 45 frames, with the first and last frames being the original images 1 and 2 respectively</p>
     
-    <img src="./images/taj_sharpened_stack.png" alt="lowres3">
-    <img src="./images/nandish_jash_sharpened_stack.png" alt="lowres3">
+
+    <img src="morph_sequence.gif" alt="GIF" width="300" height="300">
+
+      <br><br>
+    
+      <button onclick="resetGif()">Reset GIF</button>
+    
+      <script>
+        function resetGif() {
+          var gif = document.getElementById("myGif");
+          var gifSrc = gif.src;  
+          gif.src = "";          
+          gif.src = gifSrc;      
+        }
+      </script>
 
     <h2>2.2 - Hybrid Images and Fourier Analysis</h2>
     <p>As described in the project spec, the hybrid images were created by low-pass filtering one image and high-pass filtering the second image
