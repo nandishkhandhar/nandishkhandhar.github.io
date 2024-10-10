@@ -91,11 +91,17 @@
 
     <img src="./images/me_warped_avg.png" alt="lowres3">
     <img src="./images/avg_warped_me.png" alt="lowres3">
+
+    <p>Here are examples from the database morphed onto the average face</p>
+
+    <img src="./images/multiple_morph.png" alt="lowres3">
     
     <h2>Part 5: Face Caricature</h2>
-    <p>The Gaussian stack is made by consistently applying the Gaussian blur on the original image. The Laplacian stack on the other hand,
-    is created by subtracting consecutive iamges in the Gaussian stack, highlighting/extracting all the high frequancies from the image. The stacks for the 
-    orange and apple are shown below.</p>
+    <p>The Caricatures are produced by shifting the points in the original image with the formula a + k*(a - b). The original image is then 
+    morphed into this to create the final image. </p>
+    
+    <img src="./images/caricatures.png" alt="lowres3">
+    
     
     <img src="./images/gaussian_apple.png" alt="lowres3">
     <img src="./images/laplacian_apple.png" alt="lowres3">
