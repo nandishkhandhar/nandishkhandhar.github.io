@@ -103,29 +103,14 @@
     <img src="./images/caricatures.png" alt="lowres3">
     
     
-    <img src="./images/gaussian_apple.png" alt="lowres3">
-    <img src="./images/laplacian_apple.png" alt="lowres3">
-    <img src="./images/gaussian_orange.png" alt="lowres3">
-    <img src="./images/laplacian_orange.png" alt="lowres3">
-
-    <h2>2.4 - Multiresolution Blending</h2>
-    <p>From the Gaussian and Laplacian stacks, we can create a mask that can be used to merge the two images. For the orapple, the mask is 
-just one side/half of the image, but I have created a circular mask for one of the examples. For process for blending, I created a Laplacian
-stack with the merged images and summed over the whole stack, including the last item so that all the low and high frequencies are added up
-to create the final image.</p>
+    <h2>Bells and Whistles - Changing gender</h2>
+    <p>For this, I morphed my image onto the average Indian woman (which I found on the web) using the same triangulation and warping method 
+    as before. You can see the features change, ranging from skin color to eyes and eyebrows etc...</p>
     
-    <img src="./images/merged_orapple_stack.png" alt="lowres3">
-    <img src="./images/orapple_merged_stacks.png" alt="lowres3">
-
-    <p>Some other examples are shown below. The New York skyline day and night merged image is made with the rectangular/vertical split mask, but the last example
-    shown is made with a circular mask restricted by a radius parameter.</p>
-    
-    <img src="./images/ny_blended_stack.png" alt="lowres3">
-    <img src="./images/kashvi_owl_stack.png" alt="lowres3">
+    <img src="./images/bells_whistles.png" alt="lowres3">
     
     <h2>Conclusion</h2>
-    <p> The most important thing that I learnt from this project is that image processing requires a lot of trial and error and deciding what looks best qualitatively.
-        I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+    <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
     
     <a href="index.html">Back to Main Page</a>
 </body>
