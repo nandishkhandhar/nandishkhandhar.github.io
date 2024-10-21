@@ -86,21 +86,26 @@
     and one of the paintings in the image was matched with a corresponding rectangle. Since the rectangles are correctly warped, we can move on to
     creating the mosaic</p>
     
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 40%; 
+        margin: 10px;
+      }
+    </style>
     
-    <img id = "myGif" src="/images/morph_sequence.gif" alt="GIF" width="300" height="300">
-      
-      <br></br>
-      <button onclick="resetGif()">Reset GIF</button>
-    
-      <script>
-        function resetGif() {
-          var gif = document.getElementById("myGif");
-          var gifSrc = gif.src;  
-          gif.src = "";          
-          gif.src = gifSrc;      
-        }
-      </script>
+    <div class="image-container">
+        <img src="./images/artgallery.jpg" alt="lowres3" >
+        <img src="./images/rectified.png" alt="lowres3">
+    </div>
 
+    <div class="image-container">
+        <img src="./images/artgallery3.jpeg" alt="lowres3" >
+        <img src="./images/rectified2.png" alt="lowres3" >
+    </div>
     <h2>Part 4: "Mean face" of a population</h2>
     <p>This part involved loading all the data from the Danes dataset, which has 37 images. From this, the points were loaded into an array
     and then the average face was computed with the same method as before.</p>
