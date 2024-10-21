@@ -1,1 +1,128 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - CS180 Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 4 - Mosaics</h1>
+    
+    <h2>Part 1: Finding Homographies</h2>
+    <p> The homography matrix is found using the point correspondences. A system of linear equations is set up and solved, and the output is
+    the 3x3 matrix. Below are the eqations used.</p>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <p>
+        \[
+        \begin{align*}
+        A &= \begin{bmatrix}
+        -x_{\text{pts}} & -y_{\text{pts}} & -1 & 0 & 0 & 0 & x_{\text{pts}} \cdot x_{B\text{pts}} & y_{\text{pts}} \cdot x_{B\text{pts}} & x_{B\text{pts}} \\
+        0 & 0 & 0 & -x_{\text{pts}} & -y_{\text{pts}} & -1 & x_{\text{pts}} \cdot y_{B\text{pts}} & y_{\text{pts}} \cdot y_{B\text{pts}} & y_{B\text{pts}}
+        \end{bmatrix}
+        \end{align*}
+        \]
+    </p>
+    <img src="./images/resized_image1.png" alt="lowres3" width="300" height="300">
+    <img src="./images/resized_image2.png" alt="lowres3" width="300" height="300">
+    <img src="./images/delaunay_jash_nandy.png" alt="lowres3">
+
+    <h2>Part 2: Mid-way Face</h2>
+    <p>This part defines the compute_affine and inversewarp functions, including others. Both the resized images are used, as well as the 
+    triangulations, to create the mid-way face. The affine function translates the images to the midway points found in the triangulation, 
+    and then an inverse warp is called on the same. Then, the images are cross dissolved to give the right colours. All the results are displayed below, including 
+    the warped images + the midway face. </p>
+    
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 30%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/warped1.png" alt="lowres3">
+        <img src="./images/warped2.png" alt="lowres3">
+        <img src="./images/midway.png" alt="lowres3">
+    </div>
+
+
+    <h2>Part 3: The Morph Sequence</h2>
+    <p>To make the morph sequence, the code generates frames by varying warp_frac and dissolve_frac parameters from 0 to 1. The midway
+    face would have values of 0.5 for both parameters. Frames are generated and appended to the "frames" array with the same method as the midway
+    face. The gif produced contains 45 frames, with the first and last frames being the original images 1 and 2 respectively</p>
+    
+    
+    <img id = "myGif" src="/images/morph_sequence.gif" alt="GIF" width="300" height="300">
+      
+      <br></br>
+      <button onclick="resetGif()">Reset GIF</button>
+    
+      <script>
+        function resetGif() {
+          var gif = document.getElementById("myGif");
+          var gifSrc = gif.src;  
+          gif.src = "";          
+          gif.src = gifSrc;      
+        }
+      </script>
+
+    <h2>Part 4: "Mean face" of a population</h2>
+    <p>This part involved loading all the data from the Danes dataset, which has 37 images. From this, the points were loaded into an array
+    and then the average face was computed with the same method as before.</p>
+    
+    <img src="./images/avg.png" alt="lowres3">
+
+    <p>Below shown are images of my face warped onto the average geometry and the average geometry warped onto me.</p>
+
+    <img src="./images/me_warped_avg.png" alt="lowres3">
+    <img src="./images/avg_warped_me.png" alt="lowres3">
+
+    <p>Here are examples from the database morphed onto the average face</p>
+
+    <img src="./images/multiple_morph.png" alt="lowres3">
+    
+    <h2>Part 5: Face Caricature</h2>
+    <p>The Caricatures are produced by shifting the points in the original image with the formula a + k*(a - b). The original image is then 
+    morphed into this to create the final image. </p>
+    
+    <img src="./images/caricatures.png" alt="lowres3">
+    
+    
+    <h2>Bells and Whistles - Changing gender</h2>
+    <p>For this, I morphed my image onto the average Indian woman (which I found on the web) using the same triangulation and warping method 
+    as before. You can see the features change, ranging from skin color to eyes and eyebrows etc...</p>
+    
+    <img src="./images/bells_whistles.png" alt="lowres3">
+    
+    <h2>Conclusion</h2>
+    <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+    
+    <a href="index.html">Back to Main Page</a>
+</body>
+</html>
