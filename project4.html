@@ -108,31 +108,16 @@
     </div>
     
     <h2>Part 4: Creating the Mosaic</h2>
-    <p></p>
+    <p>This function blends two images of the same dimensions to create a seamless transition between them. It does so by:
+        1. Converts both images to grayscale to create masks that identify non-zero regions to create the mask
+        2. Then it identifies overlapping regions where both masks are true
+        3. I used distance transforms to calculate weights for each image based on proximity to edges. The weights are then adjusted in overlapping regions to balance contributions from both images
+        4. Applies calculated weights to blend the images, ensuring smooth transitions in overlapping areas.
+    </p>
     
-    <img src="./images/avg.png" alt="lowres3">
-
-    <p>Below shown are images of my face warped onto the average geometry and the average geometry warped onto me.</p>
-
-    <img src="./images/me_warped_avg.png" alt="lowres3">
-    <img src="./images/avg_warped_me.png" alt="lowres3">
-
-    <p>Here are examples from the database morphed onto the average face</p>
-
-    <img src="./images/multiple_morph.png" alt="lowres3">
-    
-    <h2>Part 5: Face Caricature</h2>
-    <p>The Caricatures are produced by shifting the points in the original image with the formula a + k*(a - b). The original image is then 
-    morphed into this to create the final image. </p>
-    
-    <img src="./images/caricatures.png" alt="lowres3">
-    
-    
-    <h2>Bells and Whistles - Changing gender</h2>
-    <p>For this, I morphed my image onto the average Indian woman (which I found on the web) using the same triangulation and warping method 
-    as before. You can see the features change, ranging from skin color to eyes and eyebrows etc...</p>
-    
-    <img src="./images/bells_whistles.png" alt="lowres3">
+    <img src="./images/panorama_outside_alpha_blended.png" alt="lowres3">
+    <img src="./images/mosaic_room.png" alt="lowres3">
+    <img src="./images/mosaic_outside.png" alt="lowres3">
     
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
