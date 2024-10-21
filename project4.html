@@ -44,15 +44,12 @@
         \end{align*}
         \]
     </p>
-    <img src="./images/resized_image1.png" alt="lowres3" width="300" height="300">
-    <img src="./images/resized_image2.png" alt="lowres3" width="300" height="300">
-    <img src="./images/delaunay_jash_nandy.png" alt="lowres3">
+     <p>Where (xpts, ypts) are the points for the first image and (xBpts, yBpts) are the points for the second image</p>
 
-    <h2>Part 2: Mid-way Face</h2>
-    <p>This part defines the compute_affine and inversewarp functions, including others. Both the resized images are used, as well as the 
-    triangulations, to create the mid-way face. The affine function translates the images to the midway points found in the triangulation, 
-    and then an inverse warp is called on the same. Then, the images are cross dissolved to give the right colours. All the results are displayed below, including 
-    the warped images + the midway face. </p>
+    <h2>Part 2: Warp Function</h2>
+    <p>The warp function warps an input image using the specified homography matrix defined above. It creates a grid of coordinates covering the image dimensions and
+        transforms these grid coordinates according to the homography matrix. Transformed pixel values are extracted from the input image and the final image is made by
+        interpolating these pixel values over the new coordinate grid using linear interpolation.</p>
     
     <style>
       .image-container {
@@ -66,8 +63,8 @@
     </style>
     
     <div class="image-container">
-        <img src="./images/warped1.png" alt="lowres3">
-        <img src="./images/warped2.png" alt="lowres3">
+        <img src="./images/resized_image1.png" alt="lowres3">
+        <img src="./images/resized_image2.png" alt="lowres3">
         <img src="./images/midway.png" alt="lowres3">
     </div>
 
