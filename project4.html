@@ -215,7 +215,8 @@ The provided functions implement a robust method for estimating the homography b
     <h2>Part 6: Autostitching</h2>
     
     <p>For the autostitching, the method is the same as in part A, except that the homographies are now calculated using RANSAC. From the below images, you can see that the autostitched mosaics are 
-    slightly worse than the manual ones. This is probably because for the manual process the correspondences were chosen by hand, and probably more accurate in feature matching than the algorithm.</p>
+    slightly worse than the manual ones. This is probably because for the manual process the correspondences were chosen by hand, and probably more accurate in feature matching than the algorithm. The first images 
+    in the image pairs are the autostitched ones and the second images are the manually stitched mosaics.</p>
 
     <style>
         body {
@@ -230,7 +231,7 @@ The provided functions implement a robust method for estimating the homography b
             align-items: center;
         }
         img {
-            width: 300px; /* Adjust the width as needed */
+            width: 300px; 
             height: auto;
             border: 2px solid #ccc;
             border-radius: 8px;
