@@ -200,6 +200,15 @@
         The resulting plot provides a clear representation of how features from the two images align with each other.</p>
 
     <img src="./images/g.png" alt="lowres3">
+
+    <h2>Part 5: RANSAC</h2>
+    
+    <p> 
+The provided functions implement a robust method for estimating the homography between two sets of matched keypoints using RANSAC (Random Sample Consensus). The compute_homography() function calculates the homography matrix based on four corresponding points, while ransac_homography() iteratively samples random point pairs, computes their homography, and identifies inliers based on a distance threshold. 
+        This process aims to minimize the influence of outliers in the matching process. 
+    </p>
+
+    <img src="./images/h.png" alt="lowres3">
     
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
