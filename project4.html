@@ -176,6 +176,20 @@
         <img src="./images/c.png" alt="lowres3" >
         <img src="./images/d.png" alt="lowres3">
     </div>
+
+     <div>
+    <p>This code extracts <strong>feature descriptors</strong> from selected corner points in two images, representing unique patches around each corner. It then visualizes a subset of these feature patches.</p>
+
+    <h3>Feature Extraction</h3>
+    <p>The <code>extract_feature_descriptors()</code> function takes a 40x40 pixel patch around each corner, resizes it to 8x8, normalizes it by subtracting the mean and dividing by the standard deviation, and then flattens it. This results in an array of feature descriptors.</p>
+
+    <h3>Patch Visualization</h3>
+    <p>The <code>display_feature_patches()</code> function displays the first few feature patches in a grid, representing local features around corners.</p>
+    </div>
+
+    <img src="./images/ae.png" alt="lowres3">
+    <img src="./images/af.png" alt="lowres3">
+
     
     <a href="index.html">Back to Main Page</a>
 </body>
