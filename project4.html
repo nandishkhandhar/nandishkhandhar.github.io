@@ -218,30 +218,8 @@ The provided functions implement a robust method for estimating the homography b
     slightly worse than the manual ones. This is probably because for the manual process the correspondences were chosen by hand, and probably more accurate in feature matching than the algorithm. The first images 
     in the image pairs are the autostitched ones and the second images are the manually stitched mosaics.</p>
 
-    <style>
-        body {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .image-container1 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        img {
-            width: 300px; 
-            height: auto;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-        }
-        h3 {
-            margin: 10px 0;
-        }
-    </style>
     
-    <div class="image-container1">
+    <div class="image-container">
         <h3>Image Pair 1</h3>
         <img src="./images/j.png" alt="lowres3">
         <img src="./images/mosaic_outside.png" alt="lowres3">
@@ -249,13 +227,13 @@ The provided functions implement a robust method for estimating the homography b
         
     </div>
 
-    <div class="image-container1">
+    <div class="image-container">
         <h3>Image Pair 2</h3>
         <img src="./images/p.png" alt="lowres3">
         <img src="./images/mosaic_room.png" alt="lowres3">
     </div>
 
-    <div class="image-container1">
+    <div class="image-container">
         <h3>Image Pair 3</h3>
         <img src="./images/m.png" alt="lowres3">
         <img src="./images/panorama_outside_alpha_blended.png" alt="lowres3">
