@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <h1>Project 4 - Mosaics</h1>
+    <h1>Project 4 First Half - Mosaics</h1>
     
     <h2>Part 1: Finding Homographies</h2>
     <p> The homography matrix is found using the point correspondences. A system of linear equations is set up and solved, and the output is
@@ -118,6 +118,19 @@
     <img src="./images/panorama_outside_alpha_blended.png" alt="lowres3">
     <img src="./images/mosaic_room.png" alt="lowres3">
     <img src="./images/mosaic_outside.png" alt="lowres3">
+
+
+    <h1>Project 4 Second Half - Autostitching</h1>
+    
+    <h2>Part 1: Detecting Corners</h2>
+    <p>First, all corners in the image are detected using the Harris corner detection algorithm, and the scores h for each pixel are retrieved with get_harris_corners(). The detected corner coordinates are stored in coords.
+        To prevent detecting corners too close to the edges, any points within a set edge_discard distance are removed, ensuring the selected corners are well within the image boundaries. 
+        The function dist2() is then used to calculate pairwise distances between detected corners. This distance matrix enables further filtering of corners by proximity, ensuring an even spread across the image if required. 
+        Finally, visualize_corners() overlays the detected corners on the original image, displaying each corner as a red dot.</p>
+
+    <img src="./images/a.png" alt="lowres3">
+    <img src="./images/b.png" alt="lowres3">
+   
     
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
