@@ -144,9 +144,38 @@
         <img src="./images/a.png" alt="lowres3" >
         <img src="./images/b.png" alt="lowres3">
     </div>
+
+    <div>
+    <p>This code performs <strong>corner detection</strong> on two images using the <strong>Harris Corner Detection</strong> algorithm, then refines the detected corners with <strong>Adaptive Non-Maximal Suppression (ANMS)</strong> to retain the strongest and most spatially spread-out points.</p>
+        
+    <h3>Corner Detection</h3>
+    <p>The <code>get_harris_corners()</code> function detects potential corners and assigns a score to each, indicating the corner strength.</p>
+
+    <h3>ANMS Filtering</h3>
+    <p><code>adaptive_non_maximal_suppression()</code> filters these corners. Pairwise distances between corner points are calculated, and only the most prominent corners with a wide spatial distribution are retained by setting a minimum radius for each point, using a comparison threshold (<code>c_robust</code>).</p>
+
+    <h3>Visualization</h3>
+    <p>The <code>visualize_corners()</code> function overlays the final selected corners on the original images as red dots, clearly marking the detected corner points.</p>
+</div>
     
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+        
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 40%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/c.png" alt="lowres3" >
+        <img src="./images/d.png" alt="lowres3">
+    </div>
     
     <a href="index.html">Back to Main Page</a>
 </body>
