@@ -1,1 +1,266 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - CS180 Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 5A - The Power of Diffusion Models</h1>
+    
+    <h2>Sampling from the model</h2>
+    <p> For this part, the model that was already given was used to sample different propmts with different num_inference steps. The results are shown below</p>
+
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 30%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/resized_image1.png" alt="lowres3" >
+        <img src="./images/resized_image2.png" alt="lowres3">
+        <img src="./images/rhythmwarped.png" alt="lowres3">
+    </div>
+
+    <div class="image-container">
+        <img src="./images/resized_image1outside.jpeg" alt="lowres3" >
+        <img src="./images/resized_image2outside.jpeg" alt="lowres3" >
+        <img src="./images/warpedoutside.png" alt="lowres3">
+    </div>
+
+    <div class="image-container">
+        <img src="./images/resized_image1room.jpeg" alt="lowres3"">
+        <img src="./images/resized_image2room.jpeg" alt="lowres3" >
+        <img src="./images/roomswarped.png" alt="lowres3">
+    </div>
+
+     
+
+    <h2>Part 2: Warp Function</h2>
+    <p>The warp function warps an input image using the specified homography matrix defined above. It creates a grid of coordinates covering the image dimensions and
+        transforms these grid coordinates according to the homography matrix. Transformed pixel values are extracted from the input image and the final image is made by
+        interpolating these pixel values over the new coordinate grid using linear interpolation.</p>
+    
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 30%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/resized_image1.png" alt="lowres3" >
+        <img src="./images/resized_image2.png" alt="lowres3">
+        <img src="./images/rhythmwarped.png" alt="lowres3">
+    </div>
+
+    <div class="image-container">
+        <img src="./images/resized_image1outside.jpeg" alt="lowres3" >
+        <img src="./images/resized_image2outside.jpeg" alt="lowres3" >
+        <img src="./images/warpedoutside.png" alt="lowres3">
+    </div>
+
+    <div class="image-container">
+        <img src="./images/resized_image1room.jpeg" alt="lowres3"">
+        <img src="./images/resized_image2room.jpeg" alt="lowres3" >
+        <img src="./images/roomswarped.png" alt="lowres3">
+    </div>
+
+
+    <h2>Part 3: Image Rectification</h2>
+    <p> The images shown below confirm that the warping function works. As before, the point correspondences were defined uskng the online tool
+    and one of the paintings in the image was matched with a corresponding rectangle. Since the rectangles are correctly warped, we can move on to
+    creating the mosaic</p>
+    
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 40%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/artgallery.jpg" alt="lowres3" >
+        <img src="./images/rectified.png" alt="lowres3">
+    </div>
+
+    <div class="image-container">
+        <img src="./images/artgallery3.jpeg" alt="lowres3" >
+        <img src="./images/rectified2.png" alt="lowres3" >
+    </div>
+    
+    <h2>Part 4: Creating the Mosaic</h2>
+    <p>This function blends two images of the same dimensions to create a seamless transition between them. It does so by:
+        1. Converts both images to grayscale to create masks that identify non-zero regions to create the mask
+        2. Then it identifies overlapping regions where both masks are true
+        3. I used distance transforms to calculate weights for each image based on proximity to edges. The weights are then adjusted in overlapping regions to balance contributions from both images
+        4. Applies calculated weights to blend the images, ensuring smooth transitions in overlapping areas.
+    </p>
+    
+    <img src="./images/panorama_outside_alpha_blended.png" alt="lowres3">
+    <img src="./images/mosaic_room.png" alt="lowres3">
+    <img src="./images/mosaic_outside.png" alt="lowres3">
+
+
+    <h1>Project 4 Second Half - Autostitching</h1>
+    
+    <h2>Part 1: Detecting Corners</h2>
+    <p>First, all corners in the image are detected using the Harris corner detection algorithm, and the scores h for each pixel are retrieved with get_harris_corners(). The detected corner coordinates are stored in coords.
+        To prevent detecting corners too close to the edges, any points within a set edge_discard distance are removed, ensuring the selected corners are well within the image boundaries. 
+        The function dist2() is then used to calculate pairwise distances between detected corners. This distance matrix enables further filtering of corners by proximity, ensuring an even spread across the image if required. 
+        Finally, visualize_corners() overlays the detected corners on the original image, displaying each corner as a red dot.</p>
+
+        
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 40%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/a.png" alt="lowres3" >
+        <img src="./images/b.png" alt="lowres3">
+    </div>
+
+    <h2>Part 2: ANMS Detection</h2>
+
+    <div>
+    <p>This code performs <strong>corner detection</strong> on two images using the <strong>Harris Corner Detection</strong> algorithm, then refines the detected corners with <strong>Adaptive Non-Maximal Suppression (ANMS)</strong> to retain the strongest and most spatially spread-out points.</p>
+        
+    <h3>Corner Detection</h3>
+    <p>The <code>get_harris_corners()</code> function detects potential corners and assigns a score to each, indicating the corner strength.</p>
+
+    <h3>ANMS Filtering</h3>
+    <p><code>adaptive_non_maximal_suppression()</code> filters these corners. Pairwise distances between corner points are calculated, and only the most prominent corners with a wide spatial distribution are retained by setting a minimum radius for each point, using a comparison threshold (<code>c_robust</code>).</p>
+
+    <h3>Visualization</h3>
+    <p>The <code>visualize_corners()</code> function overlays the final selected corners on the original images as red dots, clearly marking the detected corner points.</p>
+</div>
+
+
+    <style>
+      .image-container {
+        text-align: center;
+      }
+      .image-container img {
+        display: inline-block;
+        width: 40%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container">
+        <img src="./images/c.png" alt="lowres3" >
+        <img src="./images/d.png" alt="lowres3">
+    </div>
+
+    
+    <h2>Part 3: Feature Extraction</h2>
+
+     <div>
+    <p>This code extracts <strong>feature descriptors</strong> from selected corner points in two images, representing unique patches around each corner. It then visualizes a subset of these feature patches.</p>
+
+    <h3>Feature Extraction</h3>
+    <p>The <code>extract_feature_descriptors()</code> function takes a 40x40 pixel patch around each corner, resizes it to 8x8, normalizes it by subtracting the mean and dividing by the standard deviation, and then flattens it. This results in an array of feature descriptors.</p>
+
+    <h3>Patch Visualization</h3>
+    <p>The <code>display_feature_patches()</code> function displays the first few feature patches in a grid, representing local features around corners.</p>
+    </div>
+
+    <img src="./images/ae.png" alt="lowres3">
+    <img src="./images/af.png" alt="lowres3">
+
+    <h2>Part 4: Feature Matching</h2>
+    
+    <p> The provided functions compute feature matches between two sets of feature descriptors derived from images, utilizing a method based on the distance between feature vectors. 
+        The compute_feature_matches() function calculates the squared differences between each pair of features from two images, generating a distance matrix. It then applies Lowe's ratio test to filter out matches, retaining only those where the nearest neighbor is significantly closer than the second nearest. The draw_matches() function visualizes these matches by resizing and combining the two images side by side, drawing lines between matched keypoints to illustrate correspondences. 
+        The resulting plot provides a clear representation of how features from the two images align with each other.</p>
+
+    <img src="./images/g.png" alt="lowres3">
+
+    <h2>Part 5: RANSAC</h2>
+    
+    <p> 
+The provided functions implement a robust method for estimating the homography between two sets of matched keypoints using RANSAC (Random Sample Consensus). The compute_homography() function calculates the homography matrix based on four corresponding points, while ransac_homography() iteratively samples random point pairs, computes their homography, and identifies inliers based on a distance threshold. 
+        This process aims to minimize the influence of outliers in the matching process. 
+    </p>
+
+    <img src="./images/h.png" alt="lowres3">
+    <img src="./images/q.png" alt="lowres3">
+    <img src="./images/r.png" alt="lowres3">
+
+    <h2>Part 6: Autostitching</h2>
+    
+    <p>For the autostitching, the method is the same as in part A, except that the homographies are now calculated using RANSAC. From the below images, you can see that the autostitched mosaics are 
+    slightly worse than the manual ones. This is probably because for the manual process the correspondences were chosen by hand, and probably more accurate in feature matching than the algorithm. The first images 
+    in the image pairs are the autostitched ones and the second images are the manually stitched mosaics.</p>
+
+    
+    <div class="image-container">
+        <h3>Image Pair 1</h3>
+        <img src="./images/j.png" alt="lowres3">
+        <img src="./images/mosaic_outside.png" alt="lowres3">
+
+        
+    </div>
+
+    <div class="image-container">
+        <h3>Image Pair 2</h3>
+        <img src="./images/p.png" alt="lowres3">
+        <img src="./images/mosaic_room.png" alt="lowres3">
+    </div>
+
+    <div class="image-container">
+        <h3>Image Pair 3</h3>
+        <img src="./images/m.png" alt="lowres3">
+        <img src="./images/panorama_outside_alpha_blended.png" alt="lowres3">
+    </div>
+    
+
+    <h2>Conclusion</h2>
+    <p>The most interesting thing I learnt from this was that there needs to be a good balance between automating the process and finding the best correspondences.
+        For the manual images, the correspondences are better, since theyre selected by hand (I can match eye to eye etc...). However, the autostitched method
+        is faster, but leaves it up to the algorithm to pick up matching features. I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+      
+    <a href="index.html">Back to Main Page</a>
+</body>
+</html>
