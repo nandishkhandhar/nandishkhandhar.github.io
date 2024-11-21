@@ -391,13 +391,16 @@ The function iterative_denoise_cfg builds on the previous denoising process by i
     </div>
 
     
-    <h2>Part 4: Feature Matching</h2>
+    <h2>1.7.1 - Hand-Drawn and Web Images</h2>
     
-    <p> The provided functions compute feature matches between two sets of feature descriptors derived from images, utilizing a method based on the distance between feature vectors. 
-        The compute_feature_matches() function calculates the squared differences between each pair of features from two images, generating a distance matrix. It then applies Lowe's ratio test to filter out matches, retaining only those where the nearest neighbor is significantly closer than the second nearest. The draw_matches() function visualizes these matches by resizing and combining the two images side by side, drawing lines between matched keypoints to illustrate correspondences. 
-        The resulting plot provides a clear representation of how features from the two images align with each other.</p>
+    <p> For this part, the function first adds noise to the input image at specified timesteps, then applies the iterative denoising process using Classifier-Free Guidance (CFG) to refine the image. 
+        It calculates noise estimates with both conditioned and unconditioned prompts, applies guidance scaling, and iteratively removes noise until the image reaches the desired clarity. The denoised images are stored for display at different noise levels, showing the progression of the denoising process.
+        The outputs for 2 of the hand drawn iamges and one image from the web are shown below. (Car, Cat and soft-toy)
+</p>
 
-    <img src="./images/g.png" alt="lowres3">
+    <img src="./images/inp1" alt="lowres3">
+    <img src="./images/inp2" alt="lowres3">
+    <img src="./images/inp3" alt="lowres3">
 
     <h2>Part 5: RANSAC</h2>
     
