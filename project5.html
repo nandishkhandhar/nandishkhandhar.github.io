@@ -271,7 +271,7 @@ The function iterative_denoise_cfg builds on the previous denoising process by i
     <h2>1.7 - Image-to-image Translation</h2>
     <p>The process_pil_im function preprocesses and normalizes a PIL image for input into the model. 
         In the translate function, noisy images are generated at specific timesteps and denoised iteratively using Classifier-Free Guidance (CFG), improving image quality by conditioning the denoising process on the input prompt. 
-        This results in clearer and more controlled image generation compared to the previous methods.</p>
+        This results in clearer and more controlled image generation compared to the previous methods. Below are the outputs on 3 different test images.</p>
 
           
     <style>
@@ -325,7 +325,38 @@ The function iterative_denoise_cfg builds on the previous denoising process by i
       </figure>
     </div>
     
-
+      
+    <div class="image-container5">
+      <figure>
+        <img src="./images/d7.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d1.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d2.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d3.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d4.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/d5.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/d6.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+    
     <h2>Part 4: Feature Matching</h2>
     
     <p> The provided functions compute feature matches between two sets of feature descriptors derived from images, utilizing a method based on the distance between feature vectors. 
