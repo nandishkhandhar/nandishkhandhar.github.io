@@ -653,6 +653,17 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
 
     
 
+      
+    <h2>1.10 - Hybrid Images</h2>
+    
+    <p>The make_hybrids function creates a hybrid image by blending features from two prompts (e.g., "a fish" and "a submarine") during the diffusion process. 
+        It uses a combination of lowpass and highpass filters on the noise estimates from both prompts, allowing for smooth integration of one prompt's features and sharp details from the other, then iterates through the diffusion steps to refine the hybrid image. 
+        The result is a fusion of both images that captures elements from both prompts based on their respective features. Some examples that I have included here are (Skull and Waterfall), (Rocket and Pencil) and (Fish and Submarine)</p>
+
+    <img src="./images/fi.png" alt="lowres3">
+    <img src="./images/fo.png" alt="lowres3">
+    <img src="./images/fk.png" alt="lowres3">
+    
     <h2>Conclusion</h2>
     <p>The most interesting thing I learnt from this was that there needs to be a good balance between automating the process and finding the best correspondences.
         For the manual images, the correspondences are better, since theyre selected by hand (I can match eye to eye etc...). However, the autostitched method
