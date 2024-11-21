@@ -405,8 +405,8 @@ The function iterative_denoise_cfg builds on the previous denoising process by i
     <h2>1.7.2 - Inpainting</h2>
     
     <p> 
-The provided functions implement a robust method for estimating the homography between two sets of matched keypoints using RANSAC (Random Sample Consensus). The compute_homography() function calculates the homography matrix based on four corresponding points, while ransac_homography() iteratively samples random point pairs, computes their homography, and identifies inliers based on a distance threshold. 
-        This process aims to minimize the influence of outliers in the matching process. 
+The inpaint function applies a diffusion-based denoising process to an image, where specific regions defined by a mask are altered with new content while keeping other areas unchanged. 
+        It iteratively refines the image, replacing the masked areas with inpainted content, while maintaining the original pixels outside the mask.
     </p>
 
        <style>
