@@ -474,32 +474,118 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
       
     </div>
     
-    <h2>Part 6: Autostitching</h2>
+    <h2>1.7.3 - Text-Conditioned Image-to-image Translation</h2>
     
-    <p>For the autostitching, the method is the same as in part A, except that the homographies are now calculated using RANSAC. From the below images, you can see that the autostitched mosaics are 
-    slightly worse than the manual ones. This is probably because for the manual process the correspondences were chosen by hand, and probably more accurate in feature matching than the algorithm. The first images 
-    in the image pairs are the autostitched ones and the second images are the manually stitched mosaics.</p>
+    <p>The function achieves the transformation of an image by progressively adding and then removing noise at various levels, effectively refining the image to match a specific prompt, such as "a lithograph of a skull." 
+        This process demonstrates how a noisy image can be iteratively denoised, with the final output becoming closer to a clear, high-quality version that aligns with the desired artistic or visual style defined by the prompt.</p>
 
-    
-    <div class="image-container">
-        <h3>Image Pair 1</h3>
-        <img src="./images/j.png" alt="lowres3">
-        <img src="./images/mosaic_outside.png" alt="lowres3">
-
-        
+          
+    <style>
+  .image-container7 {
+    text-align: center;
+  }
+  .image-container7 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container7 img {
+    width: 100%;
+  }
+  .image-container7 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+     <h3>Campanile and Rocket Ship</h3>
+    <div class="image-container7">
+      <figure>
+        <img src="./images/q1.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q2.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q3.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q4.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q5.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q6.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
     </div>
 
-    <div class="image-container">
-        <h3>Image Pair 2</h3>
-        <img src="./images/p.png" alt="lowres3">
-        <img src="./images/mosaic_room.png" alt="lowres3">
+     <h3>Falcon and Waterfalls</h3>
+        <div class="image-container7">
+      <figure>
+        <img src="./images/q7.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q8.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q9.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q10.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q11.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q12.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
     </div>
 
-    <div class="image-container">
-        <h3>Image Pair 3</h3>
-        <img src="./images/m.png" alt="lowres3">
-        <img src="./images/panorama_outside_alpha_blended.png" alt="lowres3">
+
+     <h3>Skull and Hot Air Baloon</h3>
+
+
+    <div class="image-container7">
+      <figure>
+        <img src="./images/q15.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q16.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q17.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q18.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q19.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q20.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
     </div>
+
     
 
     <h2>Conclusion</h2>
