@@ -221,7 +221,7 @@ The iterative_denoise function progressively removes noise from an input image b
 
     <h2>1.5 - Diffusion Model Sampling</h2>
     <p>The function generates images by starting with random noise and progressively denoising it using the iterative_denoise function, which leverages the diffusion model to refine the image across multiple timesteps. 
-        Each iteration applies the denoising process conditioned on the prompt embedding,</p>
+        Each iteration applies the denoising process conditioned on the prompt embedding to generate the final images. The 5 images are shown below, and as you can see, they are not the best quality. The next part aims to improve on that. </p>
 
     <style>
       .image-container4 {
@@ -242,6 +242,31 @@ The iterative_denoise function progressively removes noise from an input image b
         <img src="./images/t.png" alt="lowres3">
     </div>
 
+
+
+     <h2>1.6 - Classifier Free Guidance</h2>
+    <p>
+The function iterative_denoise_cfg builds on the previous denoising process by incorporating Classifier-Free Guidance (CFG), which improves image generation by adjusting the noise estimate with a weighted combination of conditional and unconditional noise. 
+        By using two separate model outputs — one conditioned on the prompt and one unconditional — the function scales the noise difference, giving more control over the generated image's alignment with the prompt.</p>
+
+    <style>
+      .image-container4 {
+        text-align: center;
+      }
+      .image-container4 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container4">
+        <img src="./images/download-k.png" alt="lowres3" >
+        <img src="./images/download-a.png" alt="lowres3">
+        <img src="./images/download-s.png" alt="lowres3">
+        <img src="./images/download-h.png" alt="lowres3">
+        <img src="./images/download-u.png" alt="lowres3">
+    </div>
     
     <h2>Part 3: Feature Extraction</h2>
 
