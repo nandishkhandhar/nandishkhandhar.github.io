@@ -402,17 +402,78 @@ The function iterative_denoise_cfg builds on the previous denoising process by i
     <img src="./images/inp2.png" alt="lowres3">
     <img src="./images/inp3.png" alt="lowres3">
 
-    <h2>Part 5: RANSAC</h2>
+    <h2>1.7.2 - Inpainting</h2>
     
     <p> 
 The provided functions implement a robust method for estimating the homography between two sets of matched keypoints using RANSAC (Random Sample Consensus). The compute_homography() function calculates the homography matrix based on four corresponding points, while ransac_homography() iteratively samples random point pairs, computes their homography, and identifies inliers based on a distance threshold. 
         This process aims to minimize the influence of outliers in the matching process. 
     </p>
 
-    <img src="./images/h.png" alt="lowres3">
-    <img src="./images/q.png" alt="lowres3">
-    <img src="./images/r.png" alt="lowres3">
+       <style>
+  .image-container6 {
+    text-align: center;
+  }
+  .image-container6 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container6 img {
+    width: 100%;
+  }
+  .image-container6 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+        
+    <div class="image-container6">
+      <figure>
+        <img src="./images/b1.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b2.png" alt="lowres3">
+        <figcaption>Mask</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b3.png" alt="lowres3">
+        <figcaption>To replace</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b4.png" alt="lowres3">
+        <figcaption>Final Image</figcaption>
+      </figure>
+    </div>
 
+         
+    <div class="image-container6">
+      <figure>
+        <img src="./images/b5.png" alt="lowres3">
+        <figcaption>Process</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b6.png" alt="lowres3">
+        <figcaption>Final Image</figcaption>
+      </figure>
+      
+    </div>
+
+         
+    <div class="image-container6">
+      <figure>
+        <img src="./images/b7.png" alt="lowres3">
+        <figcaption>Process</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b8.png" alt="lowres3">
+        <figcaption>Final Image</figcaption>
+      </figure>
+      
+    </div>
+    
     <h2>Part 6: Autostitching</h2>
     
     <p>For the autostitching, the method is the same as in part A, except that the homographies are now calculated using RANSAC. From the below images, you can see that the autostitched mosaics are 
