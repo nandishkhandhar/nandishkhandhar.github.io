@@ -63,38 +63,26 @@
 
      
 
-    <h2>Part 2: Warp Function</h2>
-    <p>The warp function warps an input image using the specified homography matrix defined above. It creates a grid of coordinates covering the image dimensions and
-        transforms these grid coordinates according to the homography matrix. Transformed pixel values are extracted from the input image and the final image is made by
-        interpolating these pixel values over the new coordinate grid using linear interpolation.</p>
+    <h2>1.1 - Forward Processes</h2>
+    <p>The forward function simulates the forward diffusion process by adding noise to the input image (im) based on a time-dependent noise schedule (alpha_cumprod[t]). 
+        It scales the image and noise components, introducing progressively more noise as t increases.</p>
     
     <style>
-      .image-container {
+      .imagescontainer {
         text-align: center;
       }
-      .image-container img {
+      .imagescontainer img {
         display: inline-block;
-        width: 30%; 
+        width: 20%; 
         margin: 10px;
       }
     </style>
     
-    <div class="image-container">
-        <img src="./images/resized_image1.png" alt="lowres3" >
-        <img src="./images/resized_image2.png" alt="lowres3">
-        <img src="./images/rhythmwarped.png" alt="lowres3">
-    </div>
-
-    <div class="image-container">
-        <img src="./images/resized_image1outside.jpeg" alt="lowres3" >
-        <img src="./images/resized_image2outside.jpeg" alt="lowres3" >
-        <img src="./images/warpedoutside.png" alt="lowres3">
-    </div>
-
-    <div class="image-container">
-        <img src="./images/resized_image1room.jpeg" alt="lowres3"">
-        <img src="./images/resized_image2room.jpeg" alt="lowres3" >
-        <img src="./images/roomswarped.png" alt="lowres3">
+    <div class="imagescontainer">
+        <img src="./images/download-9.png" alt="lowres3" >
+        <img src="./images/download-10.png" alt="lowres3">
+        <img src="./images/download-13.png" alt="lowres3">
+        <img src="./images/download-16.png" alt="lowres3">
     </div>
 
 
