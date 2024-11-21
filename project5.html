@@ -587,6 +587,15 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
     </div>
 
     
+    
+    <h2>1.8 - Visual Anagrams</h2>
+    
+    <p>The visual_anagrams function generates visual anagrams by combining two different prompts (images) with adjustable weights. It iteratively denoises a randomly initialized image by applying a diffusion process, where at each timestep, it incorporates elements from both prompts (prompt1 and prompt2) based on their respective weights.
+        The function merges features from the two prompts, allowing for a blended representation in a single image when flipped upside down. The results are shown below. </p>
+
+          
+
+    
 
     <h2>Conclusion</h2>
     <p>The most interesting thing I learnt from this was that there needs to be a good balance between automating the process and finding the best correspondences.
