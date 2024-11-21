@@ -642,11 +642,11 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
      </h3>Duck and Rabbit</h3>
     <div class="image-container8">
       <figure>
-        <img src="./images/o3.png" alt="lowres3">
+        <img src="./images/o5.png" alt="lowres3">
         <figcaption>Normal</figcaption>
       </figure>
       <figure>
-        <img src="./images/o4.png" alt="lowres3">
+        <img src="./images/o6.png" alt="lowres3">
         <figcaption>Flipped</figcaption>
       </figure>
     </div>
@@ -660,9 +660,23 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
         It uses a combination of lowpass and highpass filters on the noise estimates from both prompts, allowing for smooth integration of one prompt's features and sharp details from the other, then iterates through the diffusion steps to refine the hybrid image. 
         The result is a fusion of both images that captures elements from both prompts based on their respective features. Some examples that I have included here are (Skull and Waterfall), (Rocket and Pencil) and (Fish and Submarine)</p>
 
-    <img src="./images/fi.png" alt="lowres3">
-    <img src="./images/fo.png" alt="lowres3">
-    <img src="./images/fk.png" alt="lowres3">
+
+    <style>
+      .imagecontainer6 {
+        text-align: center;
+      }
+      .imagecontainer6 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="imagecontainer6">
+        <img src="./images/fi.png" alt="lowres3" >
+        <img src="./images/fo.png" alt="lowres3">
+        <img src="./images/fk.png" alt="lowres3">
+    </div>
     
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
