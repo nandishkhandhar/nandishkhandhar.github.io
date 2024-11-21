@@ -219,21 +219,9 @@ The iterative_denoise function progressively removes noise from an input image b
     
     
 
-    <h2>Part 2: ANMS Detection</h2>
-
-    <div>
-    <p>This code performs <strong>corner detection</strong> on two images using the <strong>Harris Corner Detection</strong> algorithm, then refines the detected corners with <strong>Adaptive Non-Maximal Suppression (ANMS)</strong> to retain the strongest and most spatially spread-out points.</p>
-        
-    <h3>Corner Detection</h3>
-    <p>The <code>get_harris_corners()</code> function detects potential corners and assigns a score to each, indicating the corner strength.</p>
-
-    <h3>ANMS Filtering</h3>
-    <p><code>adaptive_non_maximal_suppression()</code> filters these corners. Pairwise distances between corner points are calculated, and only the most prominent corners with a wide spatial distribution are retained by setting a minimum radius for each point, using a comparison threshold (<code>c_robust</code>).</p>
-
-    <h3>Visualization</h3>
-    <p>The <code>visualize_corners()</code> function overlays the final selected corners on the original images as red dots, clearly marking the detected corner points.</p>
-</div>
-
+    <h2>1.5 - Diffusion Model Sampling</h2>
+    <p>The function generates images by starting with random noise and progressively denoising it using the iterative_denoise function, which leverages the diffusion model to refine the image across multiple timesteps. 
+        Each iteration applies the denoising process conditioned on the prompt embedding,</p>
 
     <style>
       .image-container {
