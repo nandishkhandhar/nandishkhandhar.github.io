@@ -268,20 +268,61 @@ The function iterative_denoise_cfg builds on the previous denoising process by i
         <img src="./images/download-u.png" alt="lowres3">
     </div>
     
-    <h2>Part 3: Feature Extraction</h2>
+    <h2>1.7 - Image-to-image Translation/h2>
+    <p></p>
 
-     <div>
-    <p>This code extracts <strong>feature descriptors</strong> from selected corner points in two images, representing unique patches around each corner. It then visualizes a subset of these feature patches.</p>
-
-    <h3>Feature Extraction</h3>
-    <p>The <code>extract_feature_descriptors()</code> function takes a 40x40 pixel patch around each corner, resizes it to 8x8, normalizes it by subtracting the mean and dividing by the standard deviation, and then flattens it. This results in an array of feature descriptors.</p>
-
-    <h3>Patch Visualization</h3>
-    <p>The <code>display_feature_patches()</code> function displays the first few feature patches in a grid, representing local features around corners.</p>
+          
+    <style>
+  .image-container5 {
+    text-align: center;
+  }
+  .image-container5 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container5 img {
+    width: 100%;
+  }
+  .image-container5 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+        
+    <div class="image-container5">
+      <figure>
+        <img src="./images/d7.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d1.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d2.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d3.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d4.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/d5.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/d6.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
     </div>
-
-    <img src="./images/ae.png" alt="lowres3">
-    <img src="./images/af.png" alt="lowres3">
+    
 
     <h2>Part 4: Feature Matching</h2>
     
