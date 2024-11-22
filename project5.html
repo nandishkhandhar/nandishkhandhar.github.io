@@ -677,7 +677,31 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
         <img src="./images/fo.png" alt="lowres3">
         <img src="./images/fk.png" alt="lowres3">
     </div>
+
+    <h1>Project 5B - Diffusion Models from Scratch!</h1>
+
+    <h2>1.1 - Implementing the UNet</h2>
     
+    <p>The UNet features an encoder-decoder structure: the encoder captures hierarchical features by progressively downsampling the input, while the decoder upsamples and reconstructs the output. 
+        Skip connections between the encoder and decoder retain critical spatial details, ensuring high-quality results. 
+        The bottleneck acts as a compact feature representation hub, and additional convolutional layers deepen the network to learn intricate patterns. This design allows the model to effectively remove noise while preserving the original structure of the image.
+    </p>
+
+
+    <h2>1.2 - Using the UNet to Train a Denoiser</h2>
+    
+    <p>
+        The visualize_noising_process function demonstrates how noise impacts images from a dataset, specifically adding Gaussian noise at varying levels (controlled by the parameter 𝜎). 
+        For each image, noise is added by sampling from a normal distribution and combining it with the original pixel values. The output is shown below.
+    </p>
+    
+    <img src="./images/fi.png" alt="lowres3" >
+
+    
+
+
+
+
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
       
