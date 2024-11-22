@@ -709,8 +709,14 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
     <img src="./images/new_results_epoch5.png" alt="lowres3">
     <img src="./images/loss_graph_new.png" alt="lowres3">
 
-
+    <h2>1.2.2 - Out-of-Distribution Testing</h2>
     
+    <p>
+     This part involves the UNet denoising images at different noise levels. As seen below, the denoised images get more and more blurry as the noise level increases. 
+        After the noise increses beyond 0.8, the denoised images starts losing its shape and is less decipherable. 
+    </p>
+
+    <img src="./images/more_mnist.png" alt="lowres3">
 
 
 
