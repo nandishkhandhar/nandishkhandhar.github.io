@@ -743,6 +743,21 @@ For this part, we train a time-conditional UNet on the MNIST dataset for denoisi
     <img src="./images/new_epoch20.png" alt="lowres3">
     <img src="./images/new_loss_today.png" alt="lowres3">
 
+     <h2>2.4 - Adding Class Conditioning</h2>
+    
+    <p>
+    The ClassConditionalUNet extends the standard UNet by incorporating both time and class conditioning to improve control over image generation. It uses fully connected blocks (FCBlocks) to process time and one-hot encoded class vectors, which modulate the network's intermediate layers through learned scaling and shifting. A dropout mechanism occasionally removes class conditioning for flexibility, enabling both conditional and unconditional generation.
+    </p>
+
+    <h2>2.5 - Sampling from the Class Conditioned Net</h2>
+    
+    <p>  The train_ddpm function trains a class-conditional UNet-based diffusion model (DDPM) on the MNIST dataset, using both time and class conditioning to predict noise added during the forward diffusion process. 
+        The training loop optimizes the model to minimize noise prediction loss over a predefined number of epochs, with periodic milestones for visualizing generated samples conditioned on specific digit classes. Sampling from the trained model leverages the reverse diffusion process to iteratively generate images from pure noise, guided by the target class labels.
+    </p>
+
+    <img src="./images/samples_e5.png" alt="lowres3">
+    <img src="./images/samples_e20.png" alt="lowres3">
+    <img src="./images/tloss_last.png" alt="lowres3">
 
   
     <h2>Conclusion</h2>
