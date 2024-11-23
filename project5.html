@@ -719,8 +719,32 @@ The inpaint function applies a diffusion-based denoising process to an image, wh
     <img src="./images/more_mnist.png" alt="lowres3">
 
 
+    <h2>2.1 - Adding Time Conditioning to UNet</h2>
+    
+    <p>
+This code implements a time-conditional UNet architecture for Denoising Diffusion Probabilistic Models (DDPMs), which iteratively adds and removes noise to generate data such as images. The model uses a time-conditional module to incorporate temporal information into the UNet, enabling it to predict noise and reverse the diffusion process. 
+        The functions handle forward diffusion (training) and reverse diffusion (sampling) based on a schedule of noise parameters.
+    </p>
 
 
+    
+    <h2>2.2 and 2.3 - Training and Sampling from the UNet</h2>
+    
+    <p>
+For this part, we train a time-conditional UNet on the MNIST dataset for denoising diffusion probabilistic modeling (DDPM). 
+        The train_diffusion_unet function implements the forward diffusion process, optimizing the UNet to predict noise added to images across timesteps, while sample_from_model performs reverse diffusion to generate samples from pure noise. 
+        The model demonstrates the capability to generate realistic images by reversing the learned diffusion process. 
+    </p>
+
+  
+    <p>The sampling process starts with pure noise and iteratively denoises it using the trained UNet, reversing the diffusion process across timesteps. At each step, the model predicts noise components, which are subtracted to refine the image, ultimately generating realistic samples from the learned data distribution. The training loss curves and the samples are shown below </p>
+  
+    <img src="./images/new_epoch5.png" alt="lowres3">
+    <img src="./images/new_epoch20.png" alt="lowres3">
+    <img src="./images/new_loss_today.png" alt="lowres3">
+
+
+  
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
       
