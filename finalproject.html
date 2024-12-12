@@ -28,7 +28,7 @@
     
     <h2>Part 1: Randomly Sampled Texture</h2>
     <p>For the first part, the quilt_random function creates a image by randomly sampling square patches from an input/texture image and assembling them in a grid-like fashion. 
-      It dynamically calculates the number of patches needed and ensures patches are sampled within valid bounds to avoid out-of-range errors. It also adjusts patch sizes near the edges to fit within the output dimensions.
+      It dynamically calculates the number of patches needed and ensures patches are sampled within valid bounds to avoid out-of-range errors. It also adjusts patch sizes near the edges to fit within the output dimensions. The patch size was chosen to be 50 (high) to replicate the texture of the bricks. The output size was 300.
     Below is the original image (first) displayed next to the randomly sampled output (second). As you can see, the output is not bad qualitatively, but still requires a smoother overlap.</p>
 
     <style>
@@ -47,27 +47,14 @@
         <img src="./images/wallq1.png" alt="lowres3" width=300 height=300>
     </div>
 
-    <h2>1.1 - Forward Processes</h2>
-    <p>The forward function simulates the forward diffusion process by adding noise to the input image (im) based on a time-dependent noise schedule (alpha_cumprod[t]). 
-        It scales the image and noise components, introducing progressively more noise as t increases.</p>
+    <h2>Part 2: Overlapping Patches</h2>
+    <p>Moving on, the quilt_simple function improves on the previous method by quilting overlapping patches from the sample image to create a better output. The function works by dividing the output into a grid of patches, aligning them with a specified overlap to ensure smooth transitions between patches. 
+        The first patch is selected randomly, and then subsequent patches are chosen based on minimizing the Sum of Squared Differences (SSD) between the overlapping regions of the existing output and candidate patches from the sample image. 
+        The 'ssd_patch' helper function computes the SSD for a masked template over all possible patch positions in the sample, and 'choose_sample' selects a random patch among the top 'tolerance' lowest-cost candidates. For this part, the patch size was 53, overlap was 20 and tolerance was 3.</p>
     
-    <style>
-      .imagescontainer {
-        text-align: center;
-      }
-      .imagescontainer img {
-        display: inline-block;
-        width: 20%; 
-        margin: 10px;
-      }
-    </style>
-    
-    <div class="imagescontainer">
-        <img src="./images/download-9.png" alt="lowres3" >
-        <img src="./images/download-10.png" alt="lowres3">
-        <img src="./images/download-13.png" alt="lowres3">
-        <img src="./images/download-16.png" alt="lowres3">
-    </div>
+        <img src="./images/wallq2.png" alt="lowres3" >
+
+
 
 
     <h2>1.2 - Classical Denoising</h2>
