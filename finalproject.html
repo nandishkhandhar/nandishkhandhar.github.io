@@ -66,10 +66,10 @@
         <img src="./images/wallfinal.png" alt="lowres3">
     
     
-    <h2>1.3 - One Step Denoising</h2>
-    <p>In one-step denoising, the pretrained diffusion model (UNet) estimates the Gaussian noise present in a noisy image using the noise level (timestep) and prompt embeddings as inputs. 
-        This estimated noise is then subtracted from the noisy image, accounting for the scaling factors of the forward diffusion process, to reconstruct an approximation of the original image.
-    </p>
+    <h2>Part 4: Texture Transfer</h2>
+    <p>The texture_transfer function combines texture synthesis with a guidance image to transfer the visual style of a sample image onto the structure of the guidance image. 
+        It divides the output into overlapping patches and determines the best-fitting patch for each location based on a weighted combination of overlap consistency (using ssd_patch) and similarity to the corresponding region in the guidance image (using ssd_guidance). 
+        The balance between these criteria is controlled by the parameter alpha. The function begins by randomly sampling the first patch and progressively places subsequent patches, aligning them with both the texture sample and the guidance structure. </p>
 
     <style>
       .image-container2 {
