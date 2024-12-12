@@ -63,8 +63,29 @@
         For each patch, it calculates overlaps with previously placed patches, determines the optimal seam for blending using a mask, and integrates the new patch while minimizing visible seams. 
         The function relies on compute_seam_cost to evaluate the cost of mismatches in overlapping regions, applying the seam mask only within overlap areas.</p>
 
-        <img src="./images/wallfinal.png" alt="lowres3">
+    <style>
+      .image-container2 {
+        text-align: center;
+      }
+      .image-container2 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
     
+    <div class="image-container2">
+        <img src="./images/bricks_small.png" alt="lowres3" >
+        <img src="./images/wallfinal.png" alt="lowres3">
+    </div>
+     <div class="image-container2">
+        <img src="./images/crosses.jpeg" alt="lowres3" >
+        <img src="./images/crossesq3.png" alt="lowres3">
+    </div>
+     <div class="image-container2">
+        <img src="./images/soil.jpg" alt="lowres3" >
+        <img src="./images/soilq3.png" alt="lowres3">
+    </div>
     
     <h2>Part 4: Texture Transfer</h2>
     <p>The texture_transfer function combines texture synthesis with a guidance image to transfer the visual style of a sample image onto the structure of the guidance image. 
