@@ -1,1 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - CS180 Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Final Project 1 - Image Quilting</h1>
+    
+    <h2>Part 1: Randomly Sampled Texture</h2>
+    <p>For the first part, the quilt_random function creates a image by randomly sampling square patches from an input/texture image and assembling them in a grid-like fashion. 
+      It dynamically calculates the number of patches needed and ensures patches are sampled within valid bounds to avoid out-of-range errors. It also adjusts patch sizes near the edges to fit within the output dimensions.
+    Below is the original image (first) displayed next to the randomly sampled output (second). As you can see, the output is not bad qualitatively, but still requires a smoother overlap.</p>
 
+    <style>
+      .imagecontainer {
+        text-align: center;
+      }
+      .imagecontainer img {
+        display: inline-block;
+        width: 20%; 
+        margin: 15px;
+      }
+    </style>
+    
+    <div class="imagecontainer">
+        <img src="./images/download-3.png" alt="lowres3" width=300 height=300>
+        <img src="./images/wallq1.png" alt="lowres3" width=300 height=300>
+    </div>
+
+    <h2>1.1 - Forward Processes</h2>
+    <p>The forward function simulates the forward diffusion process by adding noise to the input image (im) based on a time-dependent noise schedule (alpha_cumprod[t]). 
+        It scales the image and noise components, introducing progressively more noise as t increases.</p>
+    
+    <style>
+      .imagescontainer {
+        text-align: center;
+      }
+      .imagescontainer img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="imagescontainer">
+        <img src="./images/download-9.png" alt="lowres3" >
+        <img src="./images/download-10.png" alt="lowres3">
+        <img src="./images/download-13.png" alt="lowres3">
+        <img src="./images/download-16.png" alt="lowres3">
+    </div>
+
+
+    <h2>1.2 - Classical Denoising</h2>
+
+    <p> The classical denoising method using Gaussian blur filtering reduces noise by smoothing the image through convolution with a Gaussian kernel. 
+        This removes high-frequency noise while keeping lower-frequency image details. This leads to a cleaner but slightly blurred output.
+    In the pairs of images below, the right image is the Gaussian denoised image, while the left is the noisy versions.</p>
+    
+    <style>
+      .image-container1 {
+        text-align: center;
+      }
+      .image-container1 img {
+        display: inline-block;
+        width: 25%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container1">
+        <img src="./images/download-10.png" alt="lowres3" >
+        <img src="./images/download-11.png" alt="lowres3">
+    </div>
+     <div class="image-container1">
+        <img src="./images/download-13.png" alt="lowres3" >
+        <img src="./images/download-14.png" alt="lowres3">
+    </div>
+     <div class="image-container1">
+        <img src="./images/download-16.png" alt="lowres3" >
+        <img src="./images/download-17.png" alt="lowres3">
+    </div>
+    
+    <h2>1.3 - One Step Denoising</h2>
+    <p>In one-step denoising, the pretrained diffusion model (UNet) estimates the Gaussian noise present in a noisy image using the noise level (timestep) and prompt embeddings as inputs. 
+        This estimated noise is then subtracted from the noisy image, accounting for the scaling factors of the forward diffusion process, to reconstruct an approximation of the original image.
+    </p>
+
+    <style>
+      .image-container2 {
+        text-align: center;
+      }
+      .image-container2 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container2">
+        <img src="./images/download-10.png" alt="lowres3" >
+        <img src="./images/download-12.png" alt="lowres3">
+    </div>
+     <div class="image-container2">
+        <img src="./images/download-13.png" alt="lowres3" >
+        <img src="./images/download-15.png" alt="lowres3">
+    </div>
+     <div class="image-container2">
+        <img src="./images/download-16.png" alt="lowres3" >
+        <img src="./images/download-18.png" alt="lowres3">
+    </div>
+    
+    
+    
+    <h2>1.4 - Iterative Denoising</h2>
+
+    <p>
+The iterative_denoise function progressively removes noise from an input image by using UNet.
+        At each timestep, it predicts the noise and variance in the image, estimates a cleaner version using a weighted combination of the image and the noise estimate, and adds controlled variance to maintain the generative process. 
+        This iterative process gradually transitions the noisy image to a cleaner, denoised version.</p>
+
+        
+    <style>
+  .image-container3 {
+    text-align: center;
+  }
+  .image-container3 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container3 img {
+    width: 100%;
+  }
+  .image-container3 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+        
+    <div class="image-container3">
+      <figure>
+        <img src="./images/download-e.png" alt="lowres3">
+        <figcaption>Noisy Campanile at t=90</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-d.png" alt="lowres3">
+        <figcaption>Noisy Campanile at t=240</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-c.png" alt="lowres3">
+        <figcaption>Noisy Campanile at t=390</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-b.png" alt="lowres3">
+        <figcaption>Noisy Campanile at t=540</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-a.png" alt="lowres3">
+        <figcaption>Noisy Campanile at t=690</figcaption>
+      </figure>
+    </div>
+    
+    <div class="image-container3">
+      <figure>
+        <img src="./images/download-i.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-f.png" alt="lowres3">
+        <figcaption>Iteratively Denoised Campanile</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-g.png" alt="lowres3">
+        <figcaption>One-Step Denoised Campanile</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/download-h.png" alt="lowres3">
+        <figcaption>Gaussian Blurred Campanile</figcaption>
+      </figure>
+    </div>
+
+    
+    
+
+    <h2>1.5 - Diffusion Model Sampling</h2>
+    <p>The function generates images by starting with random noise and progressively denoising it using the iterative_denoise function, which leverages the diffusion model to refine the image across multiple timesteps. 
+        Each iteration applies the denoising process conditioned on the prompt embedding to generate the final images. The 5 images are shown below, and as you can see, they are not the best quality. The next part aims to improve on that. </p>
+
+    <style>
+      .image-container4 {
+        text-align: center;
+      }
+      .image-container4 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container4">
+        <img src="./images/q.png" alt="lowres3" >
+        <img src="./images/w.png" alt="lowres3">
+        <img src="./images/e.png" alt="lowres3">
+        <img src="./images/r.png" alt="lowres3">
+        <img src="./images/t.png" alt="lowres3">
+    </div>
+
+
+
+     <h2>1.6 - Classifier Free Guidance</h2>
+    <p>
+The function iterative_denoise_cfg builds on the previous denoising process by incorporating Classifier-Free Guidance (CFG), which improves image generation by adjusting the noise estimate with a weighted combination of conditional and unconditional noise. 
+        By using two separate model outputs — one conditioned on the prompt and one unconditional — the function scales the noise difference, giving more control over the generated image's alignment with the prompt.</p>
+
+    <style>
+      .image-container4 {
+        text-align: center;
+      }
+      .image-container4 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="image-container4">
+        <img src="./images/download-k.png" alt="lowres3" >
+        <img src="./images/download-t1.png" alt="lowres3">
+        <img src="./images/download-s.png" alt="lowres3">
+        <img src="./images/download-t2.png" alt="lowres3">
+        <img src="./images/download-u.png" alt="lowres3">
+    </div>
+    
+    <h2>1.7 - Image-to-image Translation</h2>
+    <p>The process_pil_im function preprocesses and normalizes a PIL image for input into the model. 
+        In the translate function, noisy images are generated at specific timesteps and denoised iteratively using Classifier-Free Guidance (CFG), improving image quality by conditioning the denoising process on the input prompt. 
+        This results in clearer and more controlled image generation compared to the previous methods. Below are the outputs on 3 different test images.</p>
+
+          
+    <style>
+  .image-container5 {
+    text-align: center;
+  }
+  .image-container5 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container5 img {
+    width: 100%;
+  }
+  .image-container5 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+        
+    <div class="image-container5">
+      <figure>
+        <img src="./images/d7.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d1.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d2.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d3.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/d4.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/d5.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/d6.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+    
+      
+    <div class="image-container5">
+      <figure>
+        <img src="./images/x1.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/x2.png" alt="lowres3">
+        <figcaption>1 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/x3.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/x4.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/x5.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/x6.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+    <figure>
+        <img src="./images/x7.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+
+
+       
+    <div class="image-container5">
+      <figure>
+        <img src="./images/f1.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/f2.png" alt="lowres3">
+        <figcaption>1 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/f3.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/f4.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/f5.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/f6.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+    <figure>
+        <img src="./images/f7.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+
+    
+    <h2>1.7.1 - Hand-Drawn and Web Images</h2>
+    
+    <p> For this part, the function first adds noise to the input image at specified timesteps, then applies the iterative denoising process using Classifier-Free Guidance (CFG) to refine the image. 
+        It calculates noise estimates with both conditioned and unconditioned prompts, applies guidance scaling, and iteratively removes noise until the image reaches the desired clarity. The denoised images are stored for display at different noise levels, showing the progression of the denoising process.
+        The outputs for 2 of the hand drawn iamges and one image from the web are shown below. (Car, Cat and soft-toy)
+</p>
+
+    <img src="./images/inp1.png" alt="lowres3">
+    <img src="./images/inp2.png" alt="lowres3">
+    <img src="./images/inp3.png" alt="lowres3">
+
+    <h2>1.7.2 - Inpainting</h2>
+    
+    <p> 
+The inpaint function applies a diffusion-based denoising process to an image, where specific regions defined by a mask are altered with new content while keeping other areas unchanged. 
+        It iteratively refines the image, replacing the masked areas with inpainted content, while maintaining the original pixels outside the mask.
+    </p>
+
+       <style>
+  .image-container6 {
+    text-align: center;
+  }
+  .image-container6 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container6 img {
+    width: 100%;
+  }
+  .image-container6 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+        
+    <div class="image-container6">
+      <figure>
+        <img src="./images/b1.png" alt="lowres3">
+        <figcaption>Original Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b2.png" alt="lowres3">
+        <figcaption>Mask</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b3.png" alt="lowres3">
+        <figcaption>To replace</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b4.png" alt="lowres3">
+        <figcaption>Final Image</figcaption>
+      </figure>
+    </div>
+
+         
+    <div class="image-container6">
+      <figure>
+        <img src="./images/b5.png" alt="lowres3">
+        <figcaption>Process</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b6.png" alt="lowres3">
+        <figcaption>Final Image</figcaption>
+      </figure>
+      
+    </div>
+
+         
+    <div class="image-container6">
+      <figure>
+        <img src="./images/b7.png" alt="lowres3">
+        <figcaption>Process</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/b8.png" alt="lowres3">
+        <figcaption>Final Image</figcaption>
+      </figure>
+      
+    </div>
+    
+    <h2>1.7.3 - Text-Conditioned Image-to-image Translation</h2>
+    
+    <p>The function achieves the transformation of an image by progressively adding and then removing noise at various levels, effectively refining the image to match a specific prompt, such as "a lithograph of a skull." 
+        This process demonstrates how a noisy image can be iteratively denoised, with the final output becoming closer to a clear, high-quality version that aligns with the desired artistic or visual style defined by the prompt.</p>
+
+          
+    <style>
+  .image-container7 {
+    text-align: center;
+  }
+  .image-container7 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container7 img {
+    width: 100%;
+  }
+  .image-container7 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+     <h3>Campanile and Rocket Ship</h3>
+    <div class="image-container7">
+      <figure>
+        <img src="./images/q1.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q2.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q3.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q4.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q5.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q6.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+
+     <h3>Falcon and Waterfalls</h3>
+        <div class="image-container7">
+      <figure>
+        <img src="./images/q7.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q8.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q9.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q10.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q11.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q12.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+
+
+     <h3>Skull and Hot Air Baloon</h3>
+
+
+    <div class="image-container7">
+      <figure>
+        <img src="./images/q15.png" alt="lowres3">
+        <figcaption>1 noise step</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q16.png" alt="lowres3">
+        <figcaption>3 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q17.png" alt="lowres3">
+        <figcaption>5 noise steps</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/q18.png" alt="lowres3">
+        <figcaption>7 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q19.png" alt="lowres3">
+        <figcaption>10 noise steps</figcaption>
+      </figure>
+         <figure>
+        <img src="./images/q20.png" alt="lowres3">
+        <figcaption>20 noise steps</figcaption>
+      </figure>
+    </div>
+
+    
+    
+    <h2>1.8 - Visual Anagrams</h2>
+    
+    <p>The visual_anagrams function generates visual anagrams by combining two different prompts (images) with adjustable weights. It iteratively denoises a randomly initialized image by applying a diffusion process, where at each timestep, it incorporates elements from both prompts (prompt1 and prompt2) based on their respective weights.
+        The function merges features from the two prompts, allowing for a blended representation in a single image when flipped upside down. The results are shown below. </p>
+
+          
+    <style>
+  .image-container8 {
+    text-align: center;
+  }
+  .image-container8 figure {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+  }
+  .image-container8 img {
+    width: 100%;
+  }
+  .image-container8 figcaption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+  }
+</style>
+     <h3>Old Man and People around a Campfire</h3>
+    <div class="image-container8">
+      <figure>
+        <img src="./images/o1.png" alt="lowres3">
+        <figcaption>Normal</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/o2.png" alt="lowres3">
+        <figcaption>Flipped</figcaption>
+      </figure>
+    </div>
+
+
+     </h3>Hand Lamp and Hot Air Baloon</h3>
+    <div class="image-container8">
+      <figure>
+        <img src="./images/o3.png" alt="lowres3">
+        <figcaption>Normal</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/o4.png" alt="lowres3">
+        <figcaption>Flipped</figcaption>
+      </figure>
+    </div>
+
+    
+     </h3>Duck and Rabbit</h3>
+    <div class="image-container8">
+      <figure>
+        <img src="./images/o5.png" alt="lowres3">
+        <figcaption>Normal</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/o6.png" alt="lowres3">
+        <figcaption>Flipped</figcaption>
+      </figure>
+    </div>
+
+    
+
+      
+    <h2>1.10 - Hybrid Images</h2>
+    
+    <p>The make_hybrids function creates a hybrid image by blending features from two prompts (e.g., "a fish" and "a submarine") during the diffusion process. 
+        It uses a combination of lowpass and highpass filters on the noise estimates from both prompts, allowing for smooth integration of one prompt's features and sharp details from the other, then iterates through the diffusion steps to refine the hybrid image. 
+        The result is a fusion of both images that captures elements from both prompts based on their respective features. Some examples that I have included here are (Skull and Waterfall), (Rocket and Pencil) and (Fish and Submarine)</p>
+
+
+    <style>
+      .imagecontainer6 {
+        text-align: center;
+      }
+      .imagecontainer6 img {
+        display: inline-block;
+        width: 20%; 
+        margin: 10px;
+      }
+    </style>
+    
+    <div class="imagecontainer6">
+        <img src="./images/fi.png" alt="lowres3" >
+        <img src="./images/fo.png" alt="lowres3">
+        <img src="./images/fk.png" alt="lowres3">
+    </div>
+
+    <h1>Project 5B - Diffusion Models from Scratch!</h1>
+
+    <h2>1.1 - Implementing the UNet</h2>
+    
+    <p>The UNet features an encoder-decoder structure: the encoder captures hierarchical features by progressively downsampling the input, while the decoder upsamples and reconstructs the output. 
+        Skip connections between the encoder and decoder retain critical spatial details, ensuring high-quality results. 
+        The bottleneck acts as a compact feature representation hub, and additional convolutional layers deepen the network to learn intricate patterns. This design allows the model to effectively remove noise while preserving the original structure of the image.
+    </p>
+
+
+    <h2>1.2 - Using the UNet to Train a Denoiser</h2>
+    
+    <p>
+        The visualize_noising_process function demonstrates how noise impacts images from a dataset, specifically adding Gaussian noise at varying levels (controlled by the parameter 𝜎). 
+        For each image, noise is added by sampling from a normal distribution and combining it with the original pixel values. The output is shown below.
+    </p>
+    
+    <img src="./images/mnist_digits_noise.png" alt="lowres3" >
+
+
+    <h2>1.2.1 - Training</h2>
+    
+    <p>
+      The train_denoiser function trains a denoising model using an Unconditional U-Net architecture to remove Gaussian noise from images. It accepts parameters such as sigma (noise standard deviation), batch_size (number of images per training batch), learning_rate (optimizer step size), D (number of hidden units in the model), and epochs (total training iterations). 
+        The function visualizes denoising results at specific epochs and saves the trained model for future use. The training loss curve is also attached below. 
+    </p>
+    
+    <img src="./images/new_results_epoch1.png" alt="lowres3">
+    <img src="./images/new_results_epoch5.png" alt="lowres3">
+    <img src="./images/loss_graph_new.png" alt="lowres3">
+
+    <h2>1.2.2 - Out-of-Distribution Testing</h2>
+    
+    <p>
+     This part involves the UNet denoising images at different noise levels. As seen below, the denoised images get more and more blurry as the noise level increases. 
+        After the noise increses beyond 0.8, the denoised images starts losing its shape and is less decipherable. 
+    </p>
+
+    <img src="./images/more_mnist.png" alt="lowres3">
+
+
+    <h2>2.1 - Adding Time Conditioning to UNet</h2>
+    
+    <p>
+This code implements a time-conditional UNet architecture for Denoising Diffusion Probabilistic Models (DDPMs), which iteratively adds and removes noise to generate data such as images. The model uses a time-conditional module to incorporate temporal information into the UNet, enabling it to predict noise and reverse the diffusion process. 
+        The functions handle forward diffusion (training) and reverse diffusion (sampling) based on a schedule of noise parameters.
+    </p>
+
+
+    
+    <h2>2.2 and 2.3 - Training and Sampling from the UNet</h2>
+    
+    <p>
+For this part, we train a time-conditional UNet on the MNIST dataset for denoising diffusion probabilistic modeling (DDPM). 
+        The train_diffusion_unet function implements the forward diffusion process, optimizing the UNet to predict noise added to images across timesteps, while sample_from_model performs reverse diffusion to generate samples from pure noise. 
+        The model demonstrates the capability to generate realistic images by reversing the learned diffusion process. 
+    </p>
+
+  
+    <p>The sampling process starts with pure noise and iteratively denoises it using the trained UNet, reversing the diffusion process across timesteps. At each step, the model predicts noise components, which are subtracted to refine the image, ultimately generating realistic samples from the learned data distribution. The training loss curves and the samples are shown below </p>
+  
+    <img src="./images/new_epoch5.png" alt="lowres3">
+    <img src="./images/new_epoch20.png" alt="lowres3">
+    <img src="./images/new_loss_today.png" alt="lowres3">
+
+     <h2>2.4 - Adding Class Conditioning</h2>
+    
+    <p>
+    The ClassConditionalUNet extends the standard UNet by incorporating both time and class conditioning to improve control over image generation. It uses fully connected blocks (FCBlocks) to process time and one-hot encoded class vectors, which modulate the network's intermediate layers through learned scaling and shifting. A dropout mechanism occasionally removes class conditioning for flexibility, enabling both conditional and unconditional generation.
+    </p>
+
+    <h2>2.5 - Sampling from the Class Conditioned Net</h2>
+    
+    <p>  The train_ddpm function trains a class-conditional UNet-based diffusion model (DDPM) on the MNIST dataset, using both time and class conditioning to predict noise added during the forward diffusion process. 
+        The training loop optimizes the model to minimize noise prediction loss over a predefined number of epochs, with periodic milestones for visualizing generated samples conditioned on specific digit classes. Sampling from the trained model leverages the reverse diffusion process to iteratively generate images from pure noise, guided by the target class labels.
+    </p>
+
+    <img src="./images/samples_e5.png" alt="lowres3">
+    <img src="./images/samples_e20.png" alt="lowres3">
+    <img src="./images/tloss_last.png" alt="lowres3">
+
+  
+    <h2>Conclusion</h2>
+    <p>This project was challenging in many ways, but the part that took the most time was the training of both the nets. After writing the architecture, I struggled with mantaining datatype consistency throughout. Moreover, for the first part, generating the hybrid images and finding pairs of objects that work was challenging but fun. 
+        I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
+      
+    <a href="index.html">Back to Main Page</a>
+</body>
+</html>
