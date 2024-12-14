@@ -126,12 +126,23 @@
     <h2>Part 1: Creating the Box and Video</h2>
     <p>I chose a white box for the video, and drew a regular grid pattern over it to define the points. The video is shown below.
     The code then opens a video file using OpenCV (cv2.VideoCapture) and then enters a loop that reads each frame one by one using video.read(). For each frame, it saves it as a JPEG image in the output folder.</p>
+    
+    <img src="./images/original.gif" alt="lowres3" width=400 height=400>
+
+    <h2>Part 2: Propogating Keypoints</h2>
+    <p>This code implements a point tracking system that tracks multiple points across video frames. It uses OpenCV's CSRT tracker to follow the movement of specified points, creating a bounding box around each point and tracking their positions frame by frame. The results are saved as both annotated video frames (showing the tracked points) and a JSON file containing the tracking data, which includes the coordinates and bounding box information for each point throughout the video sequence.
+    The 2D points (24 points) for this part were generated using the correspondence tool and imported in json format.</p>
+
+    <img src="./images/points.gif" alt="lowres3" width=400 height=400>
 
 
+
+    
     <h2>Conclusion</h2>
     <p>I have taken some inspiration from ChatGPT and pretrained LLM's to create the structure for some parts of the website.</p>
 
-    <img src="./images/original.gif" alt="lowres3" width=300 height=300>
+
+    
 
    
 
