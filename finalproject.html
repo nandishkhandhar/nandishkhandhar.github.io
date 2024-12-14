@@ -127,15 +127,21 @@
     <p>I chose a white box for the video, and drew a regular grid pattern over it to define the points. The video is shown below.
     The code then opens a video file using OpenCV (cv2.VideoCapture) and then enters a loop that reads each frame one by one using video.read(). For each frame, it saves it as a JPEG image in the output folder.</p>
     
-    <img src="./images/original.gif" alt="lowres3" width=400 height=400>
+    <img src="./images/original.gif" alt="lowres3" width=600 height=600>
 
     <h2>Part 2: Propogating Keypoints</h2>
     <p>This code implements a point tracking system that tracks multiple points across video frames. It uses OpenCV's CSRT tracker to follow the movement of specified points, creating a bounding box around each point and tracking their positions frame by frame. The results are saved as both annotated video frames (showing the tracked points) and a JSON file containing the tracking data, which includes the coordinates and bounding box information for each point throughout the video sequence.
     The 2D points (24 points) for this part were generated using the correspondence tool and imported in json format.</p>
 
-    <img src="./images/points.gif" alt="lowres3" width=400 height=400>
+    <img src="./images/points.gif" alt="lowres3" width=600 height=600>
 
+    <h2>Part 3: Calculating the Projection Matrix</h2>
+    <p>For this part, I established a 3D-2D point correspondence system that computes a projection matrix. It first loads 2D points from a JSON file, then defines 3D coordinates for the cube structure (with left, front, and top sides with specific measurements), and finally uses these corresponding points to calculate a camera projection matrix using a homogeneous linear system solved through singular value decomposition (SVD).</p>
+    
+    <h2>Part 4: Projecting the Cube</h2>
+    <p> We now draw a 3D cube on a sequence of video frames using a projection matrix. For each frame, the code takes a base point in 3D space, projects the cube's vertices onto the 2D image plane using the computed projection matrix, and then draws red lines connecting these projected points to create a cube visualization. The process is repeated for all frames (0-133) and saves the annotated images with the drawn cube.</p>
 
+    <img src="./images/boxx.gif" alt="lowres3" width=600 height=600>
 
     
     <h2>Conclusion</h2>
